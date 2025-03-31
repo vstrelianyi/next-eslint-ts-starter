@@ -7,6 +7,7 @@ const __dirname = dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
+
 /** @type {import('eslint').Linter.Config} */
 const eslintConfig = [
   {
@@ -19,22 +20,28 @@ const eslintConfig = [
     rules: {
       // jsx style formatting
       '@stylistic/indent': [ 'error', 2, ],
-      'no-trailing-spaces': 'error',
-      // 'comma-dangle': ['error', 'always-multiline'],
-      // 'max-len': ['error', 140],
-      quotes: [ 'error', 'single', ],
-      'react/jsx-curly-spacing': [
+      '@stylistic/quotes': [ 'error', 'single', ],
+      '@stylistic/jsx-quotes': [ 'error', 'prefer-double', ],
+      '@stylistic/no-trailing-spaces': [ 'error', { 'skipBlankLines': true, }, ],
+      '@stylistic/max-len': [ 'error', 140, ],
+      '@stylistic/jsx-curly-spacing': [
         'error',
         {
           when: 'always',
           children: true,
         },
       ],
+      '@stylistic/jsx-max-props-per-line': [ 2, {
+        'maximum': 1,
+        'when': 'always',
+      }, ],
+
       // vars
       '@typescript-eslint/no-unused-vars': [ 'off', ],
       'no-unused-vars': 'off',
       // '@typescript-eslint/no-unused-vars': ['error'],
       // 'no-unused-vars': 'error',
+
       // arrays
       '@stylistic/array-bracket-spacing': [ 'error', 'always', ],
       '@stylistic/no-multi-spaces': [ 'error', ],
@@ -46,6 +53,7 @@ const eslintConfig = [
           after: true,
         },
       ],
+
       // objects
       '@stylistic/object-curly-spacing': [ 'error', 'always', ],
       '@stylistic/object-curly-newline': [ 'error', {

@@ -10,7 +10,8 @@ export default function Home() {
   const obj2 = { a: 1, };
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20" data-id="2">
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20"
+      data-id="2">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <h1>{ text }</h1>
       </main>

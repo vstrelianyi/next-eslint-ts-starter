@@ -7,7 +7,11 @@ export default function Home() {
   };
   const arr = [ 1, 2, ];
 
-  const obj2 = { a: 1, };
+  const obj2 = {
+    a: 1,
+    b:2,
+		
+  };
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20"

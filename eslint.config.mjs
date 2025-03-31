@@ -22,7 +22,6 @@ const eslintConfig = [
       '@stylistic/indent': [ 'error', 2, ],
       '@stylistic/quotes': [ 'error', 'single', ],
       '@stylistic/jsx-quotes': [ 'error', 'prefer-double', ],
-      '@stylistic/no-trailing-spaces': [ 'error', { 'skipBlankLines': true, }, ],
       '@stylistic/max-len': [ 'error', 140, ],
       '@stylistic/jsx-curly-spacing': [
         'error',
@@ -45,7 +44,9 @@ const eslintConfig = [
       // arrays
       '@stylistic/array-bracket-spacing': [ 'error', 'always', ],
       '@stylistic/no-multi-spaces': [ 'error', ],
+      '@stylistic/no-mixed-spaces-and-tabs': 'error',
       '@stylistic/jsx-props-no-multi-spaces': [ 'error', ],
+      '@stylistic/no-trailing-spaces': [ 'error', { 'skipBlankLines': false, }, ],
       '@stylistic/comma-spacing': [
         'error',
         {

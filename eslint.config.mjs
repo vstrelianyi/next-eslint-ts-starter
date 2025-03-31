@@ -15,6 +15,15 @@ const eslintConfig = [
       '@stylistic': stylistic,
     },
   },
+  {
+    ignores: [
+      // '**/*.*',
+      // 'eslint.config.mjs',
+    ],
+  },
+  {
+    // files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+  },
   ...compat.config({
     extends: [ 'next/core-web-vitals', 'next/typescript', ],
     rules: {

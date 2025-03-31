@@ -28,6 +28,12 @@ const eslintConfig = [
     extends: [ 'next/core-web-vitals', 'next/typescript', ],
     rules: {
       // jsx style formatting
+      '@stylistic/semi': 'error',
+      'semi-spacing': [ 'error', {
+        'before': false,
+        'after': false,
+      }, ],
+      '@stylistic/no-extra-semi': 'error',
       '@stylistic/indent': [ 'error', 2, ],
       '@stylistic/quotes': [ 'error', 'single', ],
       '@stylistic/jsx-quotes': [ 'error', 'prefer-double', ],

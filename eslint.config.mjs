@@ -37,6 +37,7 @@ const eslintConfig = [
 
       // vars
       '@typescript-eslint/no-unused-vars': [ 'off', ],
+      '@typescript-eslint/no-explicit-any': 'off',
       'no-unused-vars': 'off',
       // '@typescript-eslint/no-unused-vars': ['error'],
       // 'no-unused-vars': 'error',

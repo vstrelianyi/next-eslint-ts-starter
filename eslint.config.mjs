@@ -2,17 +2,21 @@ import { dirname, } from 'path';
 import { fileURLToPath, } from 'url';
 import { FlatCompat, } from '@eslint/eslintrc';
 import stylistic from '@stylistic/eslint-plugin';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const compat = new FlatCompat({
+import importPlugin from 'eslint-plugin-import';
+// import customPlugin from './rules/object-max-pairs-per-line.js';
+const __filename = fileURLToPath( import.meta.url );
+const __dirname = dirname( __filename );
+const compat = new FlatCompat( {
   baseDirectory: __dirname,
-});
+} );
 
 /** @type {import('eslint').Linter.Config} */
 const eslintConfig = [
   {
     plugins: {
       '@stylistic': stylistic,
+      'custom': customPlugin,
+			'import': importPlugin,
     },
   },
   {
@@ -20,24 +24,58 @@ const eslintConfig = [
       // '**/*.*',
       // 'eslint.config.mjs',
     ],
-  },
-  {
     // files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
   },
-  ...compat.config({
+  ...compat.config( {
     extends: [ 'next/core-web-vitals', 'next/typescript', ],
     rules: {
+			// Import sorting rules
+      'import/order': [ 'error', {
+        'groups': [ 'builtin', 'external', 'internal', 'parent', 'sibling', 'index', ],
+        'newlines-between': 'always',
+        'alphabetize': {
+          'order': 'asc',
+          'caseInsensitive': true,
+        },
+      }, ],
       // jsx style formatting
+			'space-before-blocks': [ 'error', 'always', ],
+      'keyword-spacing': [ 'error', { 'after': true, }, ],
+
+      'space-infix-ops': [ 'error', { 'int32Hint': false, }, ],
+      'arrow-spacing': [ 'error', {
+        'before': true,
+        'after': true,
+      }, ],
       '@stylistic/semi': 'error',
       'semi-spacing': [ 'error', {
         'before': false,
         'after': false,
       }, ],
       '@stylistic/no-extra-semi': 'error',
+      '@stylistic/arrow-parens': [ 'error', 'always', ],
+      '@stylistic/type-annotation-spacing': [
+        'error',
+        {
+          'before': true,
+          'after': true,
+        },
+      ],
       '@stylistic/indent': [ 'error', 2, ],
       '@stylistic/quotes': [ 'error', 'single', ],
       '@stylistic/jsx-quotes': [ 'error', 'prefer-double', ],
-      '@stylistic/max-len': [ 'error', 140, ],
+      '@stylistic/jsx-closing-bracket-location': [ 2, {
+        'nonEmpty': 'tag-aligned',
+        'selfClosing': 'tag-aligned',
+      }, ],
+      // '@stylistic/jsx-one-expression-per-line': 'error',
+      // 'custom/object-max-pairs-per-line': 'error',
+      '@stylistic/max-len': [ 'error', {
+        code: 220,
+        tabWidth: 2,
+        ignoreStrings: true,
+        ignoreTemplateLiterals: false,
+      }, ],
       '@stylistic/jsx-curly-spacing': [
         'error',
         {
@@ -45,9 +83,19 @@ const eslintConfig = [
           children: true,
         },
       ],
-      '@stylistic/jsx-max-props-per-line': [ 2, {
+      'react/jsx-first-prop-new-line': [ 1, 'multiline', ],
+      '@stylistic/jsx-max-props-per-line': [ 'error', {
         'maximum': 1,
         'when': 'always',
+      }, ],
+      'react/jsx-wrap-multilines': [ 'error', {
+        'declaration': 'parens',
+        'assignment': 'parens',
+        'return': 'parens',
+        'arrow': 'parens',
+        'condition': 'parens',
+        'logical': 'parens',
+        'prop': 'parens',
       }, ],
 
       // vars
@@ -95,7 +143,10 @@ const eslintConfig = [
           functions: 'never',
         },
       ],
+
+      // func
+      '@stylistic/space-in-parens': [ 2, 'always', ],
     },
-  }),
+  } ),
 ];
 export default eslintConfig;

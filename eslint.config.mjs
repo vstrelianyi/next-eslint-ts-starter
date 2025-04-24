@@ -1,8 +1,10 @@
 import { dirname, } from 'path';
 import { fileURLToPath, } from 'url';
+
 import { FlatCompat, } from '@eslint/eslintrc';
 import stylistic from '@stylistic/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
+
 import localPlugin from './rules/index.mjs';
 const __filename = fileURLToPath( import.meta.url );
 const __dirname = dirname( __filename );
@@ -15,11 +17,10 @@ const eslintConfig = [
   {
     plugins: {
       '@stylistic': stylistic,
-      'custom': customPlugin,
-			'import': importPlugin,
-			'local': localPlugin,
+      'import': importPlugin,
+      'local': localPlugin,
     },
-		// custom rules
+    // custom rules
     rules: {
       'local/single-space-classname': 'error',
     },
@@ -34,7 +35,7 @@ const eslintConfig = [
   ...compat.config( {
     extends: [ 'next/core-web-vitals', 'next/typescript', ],
     rules: {
-			// Import sorting rules
+      // Import sorting rules
       'import/order': [ 'error', {
         'groups': [ 'builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'type', ],
         'pathGroups': [
@@ -56,15 +57,20 @@ const eslintConfig = [
         },
       }, ],
       // jsx style formatting
-			'padding-line-between-statements': [
+      'padding-line-between-statements': [
         'error',
+        {
+          'blankLine': 'always',
+          'prev': '*',
+          'next': 'function',
+        },
         {
           'blankLine': 'always',
           'prev': '*',
           'next': 'return',
         },
       ],
-			'space-before-blocks': [ 'error', 'always', ],
+      'space-before-blocks': [ 'error', 'always', ],
       'keyword-spacing': [ 'error', { 'after': true, }, ],
 
       'space-infix-ops': [ 'error', { 'int32Hint': false, }, ],
@@ -89,11 +95,12 @@ const eslintConfig = [
       '@stylistic/indent': [ 'error', 2, ],
       '@stylistic/quotes': [ 'error', 'single', ],
       '@stylistic/jsx-quotes': [ 'error', 'prefer-double', ],
+      '@stylistic/newline-per-chained-call': [ 'error', { ignoreChainWithDepth: 2, }, ],
       '@stylistic/jsx-closing-bracket-location': [ 2, {
         'nonEmpty': 'tag-aligned',
         'selfClosing': 'tag-aligned',
       }, ],
-      // '@stylistic/jsx-one-expression-per-line': 'error',
+
       // 'custom/object-max-pairs-per-line': 'error',
       '@stylistic/max-len': [ 'error', {
         code: 220,
@@ -116,7 +123,7 @@ const eslintConfig = [
       'react/jsx-wrap-multilines': [ 'error', {
         'declaration': 'parens',
         'assignment': 'parens',
-        'return': 'parens',
+        'return': 'parens-new-line',
         'arrow': 'parens',
         'condition': 'parens',
         'logical': 'parens',

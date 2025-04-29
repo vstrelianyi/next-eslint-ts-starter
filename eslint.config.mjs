@@ -172,7 +172,7 @@ const eslintConfig = [
           objects: 'always',
           imports: 'always',
           exports: 'always',
-          functions: 'never',
+          functions: 'always',
         },
       ],
 
